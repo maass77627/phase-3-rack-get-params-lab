@@ -1,6 +1,6 @@
 class Application
   @@cart = []
-  @@items = ["Apples","Carrots","Pears"]
+   @@items = ["Apples","Carrots","Pears"]
 
   def call(env)
     resp = Rack::Response.new
@@ -23,7 +23,7 @@ class Application
             resp.write "#{item}\n"
           end
         end
-      #  resp.write handle_cart
+       resp.write handle_cart
 
        elsif req.path.match(/add/)
         added_item = req.params["item"]
@@ -52,14 +52,14 @@ class Application
   end
 end
 
-  # def handle_cart
-  # # if  @@cart.empty? 
-  # #   return "Your cart is empty" 
-  # # else
-  # #   @@cart.each do |item|
-  # #     return "#{item}\n"
-  # #   end
-  # # end
-  # end
+  def handle_cart
+  if  @@cart.empty? 
+    return "Your cart is empty" 
+  else
+    @@cart.each do |item|
+      return "#{item}\n"
+    end
+  end
+  end
 
 end
